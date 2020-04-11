@@ -1,0 +1,5 @@
+<div class="login-container">
+  <input type="text" #email placeholder="Email" value="admin"/>
+  <input type="password" #password placeholder="Password" value="root"/>
+  <button class="btn btn-primary app-button" (click)="login(email.value, password.value)">Login</button>
+</div>

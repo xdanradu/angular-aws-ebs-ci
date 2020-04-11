@@ -1,0 +1,17 @@
+.app-button {
+  width: 200px;
+  border-radius: 0px;
+
+  height: 40px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+
+  &:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(black, 0.35);
+  }
+
+}
