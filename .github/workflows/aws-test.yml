@@ -29,14 +29,14 @@ jobs:
     - name: Copy Dockerfile into dist
       run: cp Dockerfile dist/angular-demo
 
-    - name: Get into dist folder
-      run: cd dist/angular-demo/
+#    - name: Get into dist folder
+#      run: cd dist/angular-demo/
 
     - name: LS1
       run: ls  
 
     - name: Generate deployment package
-      run: zip -r deploy.zip * -x "**node_modules**"
+      run: zip -r deploy.zip dist/angular-demo/* -x "**node_modules**"
 
     - name: LS2
       run: ls  
