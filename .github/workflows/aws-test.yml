@@ -46,3 +46,25 @@ jobs:
       uses: gerred/actions/current-time@master
       id: current-time
       
+    - name: Run string replace
+      uses: frabert/replace-string-action@master
+      id: format-time
+      with:
+        pattern: '[:\.]+'
+        string: "${{ steps.current-time.outputs.time }}"
+        replace-with: '-'
+        flags: 'g'
+      
+    - name: Beanstalk Deploy
+      uses: einaregilsson/beanstalk-deploy@v9
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: us-east-1
+        application_name: AngularFrontend
+        environment_name: Angularfrontend-env
+        version_label: "test-app-${{ steps.format-time.outputs.replaced }}"
+        deployment_package: deploy.zip
+      
+    - name: Deployed!
+      run: echo App deployed to ELB
