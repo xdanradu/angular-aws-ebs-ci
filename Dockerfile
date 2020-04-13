@@ -1,5 +1,4 @@
 FROM nginx:1.17.1-alpine
-WORKDIR /app
 COPY . /usr/share/nginx/html
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 EXPOSE 80

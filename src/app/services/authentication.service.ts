@@ -5,6 +5,7 @@ import {delay, switchMap} from 'rxjs/operators';
 import {StorageApp} from './storage-app';
 import {Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export const USER_ID = 'id';
 export const TOKEN = 'token';
@@ -58,7 +59,7 @@ export class AuthenticationService {
     password: string,
   ): Observable<User>{
     return new Observable((subscriber) => {
-    this.httpClient.post('http://localhost:5000/login', {username: username, password: password}).subscribe(
+    this.httpClient.post(environment.apiUrl+ '/login', {username: username, password: password}).subscribe(
       (result: any) => {
         StorageApp.set(TOKEN, result.accessToken);
         StorageApp.set(USER_ID, username);
